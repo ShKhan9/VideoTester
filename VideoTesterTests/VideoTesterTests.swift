@@ -23,7 +23,7 @@ class VideoTesterTests: XCTestCase {
         
         ferrari = Car(type: .Sport, transmissionMode: .Drive)
         jeep = Car(type: .OffRoad, transmissionMode: .Drive)
-        honda = Car(type: .Economy, transmissionMode: .Park) ////
+        honda = Car(type: .Economy, transmissionMode: .Park) ///////
         
         
     }
