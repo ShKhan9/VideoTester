@@ -44,3 +44,128 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//3lacam
+
+
+/*
+ 
+ stages:
+ - build
+ - Code Check
+ - Testing
+ - Pre Release
+ - Deployment
+ 
+ 
+ build_project:
+ stage: build
+ tags:
+ - Ios_Shell
+ script:
+ - xcodebuild clean -workspace 3lacam.xcworkspace -scheme 3lacam
+ 
+ 
+ 
+ build_project:
+ stage: build
+ tags:
+ - Ios_Shell
+ script:
+ - xcodebuild  -workspace 3lacam.xcworkspace -scheme 3lacam  -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=11.0'  # BUILD_OUTPUT=plist-html BUILD_OUTPUT_DIR=.../buildReport
+ 
+ 
+ 
+ 
+ 
+ static_code_analyze:
+ tags:
+ - Ios_Shell
+ stage: Code Check
+ script:
+ #this replace findBugs for static code analyze
+ - xcodebuild analyze -workspace 3lacam.xcworkspace -scheme 3lacam -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=11.0' --use-checker-build=~/mycrazyclangbuild/bin/clang CLANG_ANALYZER_OTHER_FLAGS= CLANG_ANALYZER_OUTPUT=plist-html CLANG_ANALYZER_OUTPUT_DIR=.../staticAnalyze
+ 
+ only:
+ - dev
+ except:
+ - tags
+ artifacts:
+ paths:
+ - .../staticAnalyze
+ allow_failure: true
+ 
+ 
+ 
+ swift_lint:
+ tags:
+ - Ios_Shell
+ stage: Code Check
+ script:
+ #- it run ok you need only to uncomment
+ - swiftlint  > lintReport.html
+ 
+ only:
+ - dev
+ except:
+ - tags
+ artifacts:
+ paths:
+ - lintReport.html
+ allow_failure: true
+ 
+ 
+ 
+ 
+ 
+ 
+ Copy_paste_PMD:
+ tags:
+ - Ios_Shell
+ stage: Code Check
+ script:
+ # Running CPD
+ - Pmd cpd --files  3lacam.xcworkspace --minimum-tokens 50 --language swift --encoding UTF-8 --format net.sourceforge.pmd.cpd.XMLRenderer> cpd-output.xml --failOnViolation true
+ # Running script
+ #- Php ./cpd_script.php -cpd-xml cpd-output.xml
+ 
+ only:
+ - dev
+ except:
+ - tags
+ artifacts:
+ paths:
+ - cpd-output.xml
+ allow_failure: true
+ 
+ 
+ 
+ 
+ testing_project:
+ stage: Testing
+ tags:
+ - Ios_Shell
+ script:
+ - xcodebuild test -workspace 3lacam.xcworkspace -scheme 3lacam -destination 'platform=iOS Simulator,name=iPhone 8 Plus,OS=11.0'   -derivedDataPath .../test-files
+ 
+ artifacts:
+ paths:
+ - .../test-files
+ 
+ 
+ 
+ archive_project:
+ stage: Deployment
+ script:
+ - xcodebuild clean archive -archivePath build/3lacam -scheme 3lacam
+ - xcodebuild -exportArchive -exportFormat ipa -archivePath "build/3lacam.xcarchive" -exportPath "build/3lacam.ipa" -exportProvisioningProfile "com.bright-creations.3lacam"
+ only:
+ - Master
+ artifacts:
+ paths:
+ - build/3lacam.ipa
+ tags:
+ - Ios_Shell
+ Message Input
+ 
+ Message caravaro
+ */
