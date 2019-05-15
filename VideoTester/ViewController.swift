@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
-        let fileUrl = Bundle.main.url(forResource: "qqq", withExtension: "mp4")! ////
+        let fileUrl = Bundle.main.url(forResource: "qqq", withExtension: "mp4")! ////////
       
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         
