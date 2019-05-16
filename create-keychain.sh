@@ -1,5 +1,5 @@
 #!/bin/bash
-KEY_PASSWORD=123
+KEY_PASSWORD=travis
  
 # Create the keychain with a password
 security create-keychain -p travis ios-build.keychain
